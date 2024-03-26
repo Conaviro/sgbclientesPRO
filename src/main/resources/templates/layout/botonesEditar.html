@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Botones Editar</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="botonesEditar">
+            <div id="actions" class="py-4 mb-4 bg-light">
+               
+                            <a th:href="@{/}" class="btn btn-secondary btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                                <span class="text">Regresar al Inicio     </span>
+                            </a>                      
+                     
+                            
+                            <a href="#" class="btn btn-success btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <span class="text">Crear Registro         </span>
+                            </a>
+
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

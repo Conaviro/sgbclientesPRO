@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="layout/cabecera::head">
+        <title>Inicio</title>
+        <meta charset="utf-8"/>     
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+    </head>
+
+    <body id="page-top">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+
+            <div th:replace="layout/menu :: menu"></div>
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+                    <!--
+                     <div th:replace="layout/nav :: nav"></div>
+                    -->
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading 
+                        <h1 class="h3 mb-4 text-gray-800">Comunidad</h1>
+                        -->
+                        <div class="row">
+
+
+
+                            <!-- Main jumbotron for a primary marketing message or call to action -->
+                            <div class="jumbotron">
+                                <div class="container">
+                                    <h3>Encuentra el trabajo que andas buscando.</h3>
+                                    Puedes buscar por descripción y categoría.
+                                    <form th:action="@{/search}" th:object="${search}" method="get" class="form-inline">
+                                        <input type="text" th:field="*{detalle}" class="form-control mb-3" placeholder="Escriba una búsqueda">&nbsp;
+                                            <select th:field="*{area.idArea}" class="custom-select custom-select mb-3">
+                                                <option th:value="${null}" selected>Seleccione una categoría</option>
+                                                <option th:each="area : ${areas}" 
+                                                        th:value="${area.idArea}"
+                                                        th:text="${area.nombreArea}">
+                                                </option>
+                                            </select>&nbsp;
+
+                                            <button type="submit" class="btn btn-primary mb-3">Buscar</button>            
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+
+                            <div class="container"> 
+                             <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
+                                <hr>        
+                                    <div class="row" th:each="oferta : ${ofertas}">
+                                        <div class="col-md-3">            
+                                            <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${oferta.empresa.logo}) }" alt="Generic placeholder image" width="220" height="220">            
+                                        </div>
+                                        <div class="col-md-9">
+                                            <h2 th:text="${oferta.tituloOferta}">Arquitecto</h2>
+                                            <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${oferta.area.nombreArea}"></span></h6>
+                                            <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${#dates.format(oferta.fechaPublicacion, 'dd-MM-yyyy')}"></span></h6>
+                                            <p th:text="${oferta.detalle}">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                                            <p><a class="btn btn-secondary" href="#" role="button">Ver detalles &raquo;</a></p>           
+                                            <!-- th: @{/vacantes/view/{id} (id=${vacante.id}) }--> 
+                                        </div>
+                                    </div> 
+                                    <hr>    
+
+                            </div> 
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                    <!--  End Page Content-->
+
+                </div>
+                <!-- End of Main Content -->
+
+            </div>
+
+        </div>
+        <!-- End of Content Wrapper -->
+        <div th:replace="layout/cabecera::scripts"></div>
+
+    </body>
+
+
+</html>

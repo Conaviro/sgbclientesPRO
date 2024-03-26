@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:fragment="head">
+        <title>Plantilla</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        
+        <!-- Custom styles for this template -->    
+        <link rel="stylesheet" th:href="@{/bootstrap/css/jumbotron.css}">
+        
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/webjars/jquery/jquery.js}"></script> 
+        
+        <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css"  />
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet"/>
+        <!-- Custom styles for this template-->
+
+        <!-- Custom styles for this page -->
+        <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet"/>
+
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        
+        <!-- Custom styles for this template-->
+        <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet"/>
+        
+        
+        
+
+    </head>
+    <body id="page-top">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+            <div th:fragment="scripts">
+
+                <!-- Bootstrap core JavaScript-->
+                <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+                <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+                <script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+                
+                <script th:src="@{/webjars/jquery-validation/1.19.0/jquery.validate.min.js}"></script>
+	
+                
+                <!-- Core plugin JavaScript-->
+                <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+                <!-- Custom scripts for all pages-->
+                <script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+
+                <!-- Page level plugins -->
+                <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+
+                <!-- Page level custom scripts -->
+                <script th:src="@{/js/demo/chart-area-demo.js}"></script>
+                <script th:src="@{/js/demo/chart-pie-demo.js}"></script>
+
+                <!-- Page level plugins -->
+                <script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+                <script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+
+                <!-- Page level custom scripts -->
+                <script th:src="@{/js/demo/datatables-demo.js}"></script>
+                
+                <script th:src="@{/js/funciones.js}"></script>
+                
+                <script th:src="@{/js/main.js}"></script>
+                
+                
+            </div>
+        </div>
+    </body>
+</html>

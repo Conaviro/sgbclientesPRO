@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="layout/cabecera::head">
+        
+        <title>Inicio</title>
+        <meta charset="utf-8"/>     
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+    </head>
+
+    <body id="page-top">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+            <div th:replace="layout/menu :: menu"></div>
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+                   
+                    <div th:replace="layout/nav :: nav"></div>
+
+                <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <h1 class="h3 mb-4 text-gray-800">Provincia</h1>
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+
+                                <!-- Circle Buttons -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Información</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- Outer Row -->
+                                        <div class="row justify-content-center">
+
+                                            <div class="col-xl-10 col-lg-16 col-md-12">
+
+                                                <div class="card o-hidden border-0 shadow-lg my-5">
+                                                    <div class="card-body p-0">
+                                                        <!-- Nested Row within Card Body -->
+                                                        <div class="row">
+
+                                                            <div class="col-lg-12">
+                                                                <div class="p-5">
+                                                                    <div class="text-center">
+                                                                        <h1 class="h4 text-gray-900 mb-4">Datos de Provincia</h1>
+                                                                    </div>
+                                                                    <form class="user" th:action="@{/apiempleado/guardarprovincia}" th:object="${provincia}" method="post" enctype="multipart/form-data">
+                                                                        <div class="form-group">
+                                                                            <input type="text"  th:field="*{nombreProvincia}" class="form-control form-control-user"
+                                                                                   id="nombreProvincia" name="nombreProvinvcia" placeholder="Provincia">
+                                                                                <input type="hidden" th:field="*{idProvincia}"/> 
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <button type="submit" class="btn btn-success btn-block">
+                                                                                <i class="fas fa-check"></i> Grabar
+                                                                            </button>
+                                                                        </div>
+
+                                                                    </form>
+                                                                    <hr></hr>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                
+                </div>
+                
+                <!-- /.container-fluid -->
+            </div>
+        </div >
+        <div th:replace="layout/cabecera::scripts"></div>
+    </body>
+</html>

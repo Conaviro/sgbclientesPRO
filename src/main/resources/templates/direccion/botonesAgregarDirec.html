@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Botones Agregar</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div th:fragment="botonesAgregarDirec" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <div th:if="${direccionPk} eq 1 or ${direccionPk} eq 2 ">
+                            <a th:href="@{/apiempleado/editdireccion/{id} (id= ${direccionPk}) } " class="btn btn-primary btn-block" > 
+                                <i class="fas fa-plus"></i> [[#{accion.agregarDir}]]
+                            </a>
+                        </div>
+                        <div th:if="${direccionPk} eq 'vacio'">
+                            <a th:href="@{/apiempleado/agregarDireccion } " class="btn btn-primary btn-block" > 
+                                <i class="fas fa-plus"></i> [[#{accion.agregarDir}]]
+                            </a>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-3" >
+                        <a href="#" class="btn btn-primary btn-block" 
+                           data-toggle="modal" data-target="#agregarHoja">
+                            <i class="fas fa-plus"></i> [[#{accion.agregarHoja}]]
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a th:href="@{/apiempleado/agregarOficioHoja} " class="btn btn-primary btn-block" > 
+                            <i class="fas fa-plus"></i> [[#{accion.agregarOfi}]]
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

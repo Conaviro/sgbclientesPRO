@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="layout/cabecera::head">
+        <title>Inicio</title>
+        <meta charset="utf-8"/>     
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css' />
+        <script src="webjars/jquery/jquery.js"></script>
+        <script src="webjars/bootstrap/js/bootstrap.min.js"></script>
+
+    </head>
+
+    <body id="page-top">
+
+
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+
+            <div th:replace="layout/menu :: menu"></div>
+
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <div th:replace="layout/nav :: nav"></div>
+
+                    <!-- Begin Page Content arriba -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <h1 class="h3 mb-4 text-gray-800">Persona</h1>
+
+                        <div class="row">
+
+                            <div class="col-lg-12">
+
+                                <!-- Circle Buttons -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Información</h6>
+                                    </div>
+                                    <!--  <div class="card-body"> -->
+                                    <!-- Outer Row -->
+                                    <div class="row justify-content-center">
+
+                                        <div class="col-xl-10 col-lg-16 col-md-12">
+
+                                            <div class="card o-hidden border-0 shadow-lg my-5">
+                                                <div class="card-body p-0">
+                                                    <!-- Nested Row within Card Body -->
+                                                    <div class="row">
+
+                                                        <div class="col-lg-12">
+                                                            <div class="p-5">
+                                                                <div class="text-center">
+                                                                    <h1 class="h4 text-gray-900 mb-4">Datos Personales</h1>
+                                                                </div>
+                                                                <form class="user" th:action="@{/apiempleado/guardarPersona}" th:object="${persona}"  method="post" enctype="multipart/form-data">
+                                                                    <div class="row g-3">
+
+                                                                        <div class="row g-3">
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="tipoIdentificacion">Tipo Identificación</label>
+                                                                                    <select class="form-control" name="tipoIdentificacion" th:field="*{tipoIdentificacion.idTipoIdentificacion}" id="tipoIdentificacion">
+                                                                                        <option th:each="tipoIdentificacion : ${tipoIndentificacions}" 
+                                                                                                th:value="${tipoIdentificacion.idTipoIdentificacion}"
+                                                                                                th:text="${tipoIdentificacion.nombreTipoIdentificacion}">
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="identificacion">Identificación</label>                                                                                
+                                                                                    <input type="text"  th:field="*{identificacion}" class="form-control"
+                                                                                           id="identificacion" name="identificacion" placeholder="identificacion">
+                                                                                        <input type="hidden" th:field="*{idPersona}"/> 
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <input type="text"  th:field="*{apellido}" class="form-control"
+                                                                                           id="apellido" name="apellido" placeholder="Apellido">
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <input type="text"  th:field="*{nombre}" class="form-control"
+                                                                                           id="nombre" name="nombre" placeholder="Nombre">
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <input type="text"  th:field="*{email}" class="form-control"
+                                                                                           id="email" name="email" placeholder="Email">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Estado Persona</label>
+                                                                                    <div class="form-check">
+                                                                                        
+                                                                                        <input type="checkbox" th:field="*{estatus}" id="estatus" name="estatus" value="1"/>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+
+
+
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <label for="estadoCivil">Estado Civil</label>
+                                                                                <select class="form-control" name="estadoCivil" th:field="*{estadoCivil.idEstadoCivil}" id="estadoCivil">
+                                                                                    <option th:each="estadoCivil : ${estadoCivils}" 
+                                                                                            th:value="${estadoCivil.idEstadoCivil}"
+                                                                                            th:text="${estadoCivil.nombreEstadoCivil}">
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <label for="genero">Genero</label>
+                                                                                <select class="form-control" name="genero" th:field="*{genero.idGenero}" id="genero">
+                                                                                    <option th:each="genero : ${generos}" 
+                                                                                            th:value="${genero.idGenero}"
+                                                                                            th:text="${genero.nombreGenero}">
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-6">
+
+                                                                            <div class="form-group">
+                                                                                <div class="mb-3 form-check form-switch">
+                                                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                                                                        <label class="form-check-label" for="flexSwitchCheckChecked">Activar Licencia</label>
+                                                                                </div>                                                                                
+                                                                                <select class="form-control" name="licencia" th:field="*{licencia.idTipoLicencia}" id="licencia">
+                                                                                    <option th:each="licencia : ${licencias}" 
+                                                                                            th:value="${licencia.idTipoLicencia}"
+                                                                                            th:text="${licencia.nombreTipoLicencia}">
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+
+                                                                                <div class="mb-3 form-check form-switch">
+                                                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                                                                        <label class="form-check-label" for="flexSwitchCheckChecked">Activar Tipo Vehiculo</label>
+                                                                                </div> 
+                                                                                <select class="form-control" name="tipoVehiculo" th:field="*{tipoVehiculo.idTipoVehiculo}" id="tipoVehiculo">
+                                                                                    <option th:each="tipoVehiculo : ${tipoVehiculos}" 
+                                                                                            th:value="${tipoVehiculo.idTipoVehiculo}"
+                                                                                            th:text="${tipoVehiculo.nombreTipoVehiculo}">
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+
+
+
+
+                                                                        <button type="submit" class="btn btn-success btn-block">
+                                                                            <i class="fas fa-check"></i> Grabar
+                                                                        </button>
+
+
+                                                                    </div>
+
+                                                                    <hr>
+                                                                    <div class="col-md-9">
+                                                                        <div class="form-group">
+
+                                                                            <div th:replace="direccion/botonesAgregarDirec :: botonesAgregarDirec"></div>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                            </div>
+                                                            <!--
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                                                                    
+                                                                    <div th:replace="hojaVida/botonesAgregarHoja :: botonesAgregarHoja"></div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                                                                    
+                                                                    <div th:replace="oficio/botonesAgregarOficio :: botonesAgregarOficio"></div>
+                                                                </div>
+                                                            </div>
+                                                            -->
+                                                            <!--   
+                                                              <section th:replace="direccion/formDireccion :: formDireccion"></section>
+                                                            -->
+
+                                                            </form>
+                                                            <section th:replace="hojaVida/agregarHoja :: agregarHoja"></section>
+
+
+
+                                                            <!--
+                                                            
+                                                                                                                            <div class="col text-center">
+                                                                                                                                <button class="btn btn-sm btn-success newAddBookBtn btn-space">Add
+                                                                                                                                    New Contact</button>
+                                                                                                                            </div>
+                                                                                                                            <br>
+                                                                                                                                <div class="myForm">
+                                                                                                                                    <form th:action="@{/guardarHojaVida}" method="post" id="addressBookForm"
+                                                                                                                                          name="addressBookForm">
+                                                                                                                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                                                                                                             role="dialog" aria-labelledby="exampleModalLabel"
+                                                                                                                                             aria-hidden="true">
+                                                                                                                                            <div class="modal-dialog" role="document">
+                                                                                                                                                <div class="modal-content">
+                                                                                                                                                    <div class="modal-header">
+                                                                                                                                                        <h5 class="modal-title" id="exampleModalLabel">Addressbook
+                                                                                                                                                        </h5>
+                                                                                                                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                                                                                                                aria-label="Close">
+                                                                                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                                                                                        </button>
+                                                                                                                                                    </div>
+                                                                                                                                                    <div class="modal-body">
+                                                                                                                                                        <div class="form-group" hidden="true">
+                                                                                                                                                            <label for="idHojaVida" class="col-form-label">ID:</label> <input
+                                                                                                                                                                type="text" class="form-control form-control-sm btn-space"
+                                                                                                                                                                id="idHojaVida" name="idHojaVida" />
+                                                                                                                                                        </div>
+                                                                                                                                                        <div class="row">
+                                                                                                                                                            <label class="col-md-4 control-label boldlabel text-right"
+                                                                                                                                                                   for="firstname">Objetivo:</label>
+                                                                                                                                                            <div class="col-md-7 pull-left">
+                                                                                                                                                                <input type="text"
+                                                                                                                                                                       class="form-control form-control-sm btn-space" id="objetivo"
+                                                                                                                                                                       name="objetivo" />
+                                                                                                                                                            </div>
+                                                                                                                                                        </div>
+                                                                                                                                                        <div class="row">
+                                                                                                                                                            <label class="col-md-4 control-label boldlabel text-right"
+                                                                                                                                                                   for="firstname">Salario:</label>
+                                                                                                                                                            <div class="col-md-7 pull-left">
+                                                                                                                                                                <input type="text"
+                                                                                                                                                                       class="form-control form-control-sm btn-space" id="salario"
+                                                                                                                                                                       name="salario" />
+                                                                                                                                                            </div>
+                                                                                                                                                        </div>
+                                                                                                                                                       
+                                                                                                                                                    </div>
+                                                                                                                                                    <div class="modal-footer">
+                                                                                                                                                        <button type="button" class="btn btn-sm btn-secondary btn-space"
+                                                                                                                                                                data-dismiss="modal">Close</button>
+                                                                                                                                                        <input type="submit" class="btn btn-sm btn-primary btn-space"
+                                                                                                                                                               value="Save" />
+                                                                                                                                                    </div>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </form>
+                                                                                                                                </div>
+                                                            -->
+
+
+
+
+
+
+
+                                                            <!-- 
+                                                            th:onchange ="'javascript:openContactsModal(\''+ 2 + '\');'"
+                                                             <div class="card-body">
+
+                                                                 
+                                                                 <a th:href="@{/apiempleado/agregarDireccion}" class="btn btn-success btn-icon-split">
+                                                                     <span class="icon text-white-50">
+                                                                         <i class="fas fa-check"></i>
+                                                                     </span>
+                                                                     <span class="text">Crear Registro         </span>
+                                                                 </a>
+                                                             </div>
+                                                            comment -->
+                                                            <hr></hr>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!--  </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End of Main Content -->
+
+
+            <!-- /.container-fluid -->
+        </div>
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+
+        <div th:replace="layout/cabecera::scripts"></div>
+
+
+        <script th:src="@{../assets/dist/js/bootstrap.bundle.min.js}"></script>
+
+
+        <!-- <script th:src="@{cheatsheet.js}"></script>-->
+
+
+
+        <script type="text/javascript">
+            function carga_ajax_get(ruta, valor, div)
+            {
+                var selObj = document.getElementById("tipoDireccion");
+                var selValue = selObj.options[selObj.selectedIndex].value;
+
+                //var selNumerocasa = document.getElementById("numeroCasa");
+
+                // var selCalleObj = document.getElementById("callePrincipal");
+                //var selCalleValue = selCalleObj.options[selObj.selectedIndex].value;
+                //Setting Value
+                //document.getElementById("textFieldValueJS").value = selValue;
+                alert(selValue);
+
+
+                //location.load(
+                //location.load();
+                /*
+                 const $ventanaModal = $('#formDireccion')
+                 console.log($ventanaModal)
+                 $ventanaModal.on('hidden.bs.modal', function () {
+                 const $formulario = $ventanaModal.find('form');
+                 $formulario[0].reset();
+                 
+                 }
+                 );*/
+
+                $.get(ruta, {valor: valor}, function (resp) {
+                    $("#" + div + "").html(resp);
+                });
+                return false;
+
+            }
+
+            /*
+             $(document).ready(function () {
+             $("#tipoDireccion").load("/apiempleado/refreshItem", $("#tipDireccion").serialize());
+             });
+             */
+
+            function singleSelectChangeValue() {
+                //Getting Value
+                //var selValue = document.getElementById("singleSelectDD").value;
+                var selObj = document.getElementById("tipoDireccion");
+                var selValue = selObj.options[selObj.selectedIndex].value;
+                // $("#tipoDireccion").load("/apiempleado/refreshItem", $("#tipDireccion").serialize());
+                //Setting Value
+                //document.getElementById("textFieldValueJS").value = selValue;
+                alert(selValue);
+            }
+
+
+            function openContactsModal(id) {
+                alert(id);
+                $.ajax({
+                    url: "/apiempleado/findOne?id=" + id,
+                    success: function (data) {
+                        alert(id);
+                        //alert(data);
+                        var myJSON = JSON.stringify(data);
+
+                        //alert(myJSON);
+
+                        var tmpData = JSON.parse(myJSON);
+                        var formattedJson = JSON.stringify(tmpData, null, ' ');
+
+                        //alert(formattedJson);
+
+                        /*
+                         $('#myContactid').html('Id is : ' + data.id);
+                         $('#myContactfirstname').html('FirstName is : ' + data.firstname);
+                         $('#myContactlastname').html('LastName is : ' + data.lastname);
+                         $('#myContactphonenumber').html('Phone Number is : ' + data.phonenumber);
+                         $('#myContactemail').html('Email-Id is : ' + data.email);
+                         $('#myContactaddress').html('Address is : ' + data.address);
+                         $('#myContactModal').modal("show");
+                         
+                         */
+                    }
+
+                });
+            }
+
+
+
+
+        </script>
+        <!-- comment 
+        <script>
+            jQuery(document).ready(function () {
+
+                alert("modal");
+                jQuery('#formDireccion').on('hidden.bs.modal', function (e) {
+                    jQuery(this).removeData('bs.modal');
+                    jQuery(this).find('.modal-content').empty();
+                })
+
+            })
+        </script>
+        -->
+    </body>
+
+
+
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/cabecera::head">
+        <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	
+	<title>Curso Spring Boot</title>
+	
+        
+        
+        
+	
+        
+        
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	 
+    </head>
+    <body>
+
+        <div class="container">
+
+        </div>
+
+        <main class="container">
+            <h1>AJAX</h1>
+
+            <a href="javascript:void(0);" onclick="carga_ajax_get('/apiempleado/peticion', 'maría', 'ajax');">Haz clic</a>
+
+            <div id="ajax"></div>
+
+        </main>
+
+
+
+        <footer ></footer>
+        <!-- 
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery.alerts.min.js}"></script>
+        <script th:src="@{/js/funciones.js}"></script>
+        comment -->
+        <div th:replace="layout/cabecera::scripts"></div>
+
+
+        <script th:src="@{../assets/dist/js/bootstrap.bundle.min.js}"></script>
+
+        
+        <script type="text/javascript">
+            function carga_ajax_get(ruta, valor, div)
+            {
+                $.get(ruta, {valor: valor}, function (resp) {
+                    $("#" + div + "").html(resp);
+                });
+                return false;
+
+            }
+        </script>
+    </body>
+</html>

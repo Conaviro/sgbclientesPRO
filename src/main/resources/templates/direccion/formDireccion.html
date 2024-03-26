@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace="layout/cabecera::head">
+        <title>Inicio</title>
+        <meta charset="utf-8"/>     
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+
+    <body >
+
+
+
+
+        <section th:fragment="formDireccion">
+            <form class="user" th:action="@{/apiempleado/guardardireccion}" th:object="${direccion}"   method="post" id="idformDireccion" name="idformDireccion">
+                <div id="formDireccion" class="modal fade"  tabindex="-1">
+
+
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <div class="modal-header bg-info text-white">
+                                <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Dirección</h5>
+                                <button class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div> 
+
+
+
+
+                            <div class="modal-body">
+
+                                
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="tipoDireccion">Tipo Direccion</label>
+                                        <select class="form-control" name="tipoDireccion"  id="tipoDireccion" th:onchange="carga_ajax_get('/apiempleado/findOne', 2 , 'ajax');"   >
+                                            <option th:each="tipoDireccion : ${tipoDireccions}" 
+                                                    th:value="${tipoDireccion.idTipoDireccion}"
+                                                    th:text="${tipoDireccion.nombreTipoDireccion}">
+                                            </option>
+                                        </select>
+                                         <div id="ajax"></div>
+
+<!-- 
+                                        <a th:href="@{/apiempleado/findOne/(id=*{tipoDireccion.idTipoDireccion}}"
+                                           >Edit</a>
+-->
+                                    </div>
+                                </div>
+                                
+
+                                <!--
+                                <input type="text"  th:field="*{descripcionDireccion}" class="form-control form-control-user"
+                                       id="descripcionDireccion" name="descripcionDireccion" placeholder="Descripcion de la Direccion">
+                                   
+                                <input type="hidden" th:field="*{idDireccion}"/> 
+                                -->
+
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"  th:field="*{callePrincipal}" class="form-control" id="callePrincipal" name="callePrincipal" placeholder="Calle Principal">
+                                                <!-- 
+                                                
+                                                <input type="text" th:field="*{tipoDireccion.idTipoDireccion}"/> 
+                                                comment -->
+                                                <input type="hidden" th:field="*{llave}"/> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"  th:field="*{numeroCasa}" class="form-control"
+                                                   id="numeroCasa" name="numeroCasa" placeholder="numeroCasa">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"  th:field="*{calleSecundaria}" class="form-control"
+                                                   id="calleSecundaria" name="calleSecundaria" placeholder="calleSecundaria">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"  th:field="*{barrio}"  class="form-control"
+                                                   id="barrio" name="barrio" placeholder="barrio">
+
+                                        </div>
+                                    </div>
+                                </div>   
+
+                                <div class="row">    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="ubicacionLat">Ubicacion Lat.</label>
+                                            <input type="text"  th:field="*{ubicacionLat}" class="form-control"
+                                                   id="ubicacionLat" name="ubicacionLat" placeholder="ubicacionLat">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="ubicacionIng">Ubicacion Ing.</label>
+                                            <input type="text"  th:field="*{ubicacionIng}" class="form-control"
+                                                   id="ubicacionIng" name="ubicacionIng" placeholder="ubicacionIng">
+
+                                        </div>
+                                    </div>
+                                </div> 
+
+                                <div class="row">      
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"  th:field="*{telefonoDomicilioUno}" class="form-control"
+                                                   id="telefonoDomicilioUno" name="telefonoDomicilioUno" placeholder="teléfono DomicilioUno">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"  th:field="*{extUno}" class="form-control"
+                                                   id="extUno" name="extUno" placeholder="Ext. Uno">
+
+                                        </div>
+                                    </div>
+
+                                </div>   
+
+                                <div class="row"> 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"  th:field="*{telefonoDomicilioDos}" class="form-control"
+                                                   id="telefonoDomicilioDos" name="telefonoDomicilioDos" placeholder="teléfono DomicilioDos">
+
+                                        </div>
+                                    </div> 
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"  th:field="*{extDos}" class="form-control"
+                                                   id="extDos" name="extDos" placeholder="Ext. Dos">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row"> 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"  th:field="*{celular}" class="form-control"
+                                                   id="celular" name="celular" placeholder="celular">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text"  th:field="*{webPage}" class="form-control"
+                                                   id="webPage" name="webPage" placeholder="webPage">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row"> 
+
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="provincia">Provincia</label>
+                                            <select class="form-control" name="provincia" th:field="*{provincia.idProvincia}" id="provincia">
+                                                <option th:each="provincia : ${provincias}" 
+                                                        th:value="${provincia.idProvincia}"
+                                                        th:text="${provincia.nombreProvincia}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row"> 
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="parroquia">Parroquia</label>
+                                            <select class="form-control" name="parroquia" th:field="*{parroquia.idParroquia}" id="parroquia">
+                                                <option th:each="parroquia : ${parroquias}" 
+                                                        th:value="${parroquia.idParroquia}"
+                                                        th:text="${parroquia.nombreParroquia}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="canton">Canton</label>
+                                            <select class="form-control" name="canton" th:field="*{canton.idCanton}" id="canton">
+                                                <option th:each="canton : ${cantons}" 
+                                                        th:value="${canton.idCanton}"
+                                                        th:text="${canton.nombreCanton}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!--     -->
+
+                            <div class="modal-footer">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-success btn-block">
+                                        <i class="fas fa-check"></i> Grabar
+                                    </button>
+                                </div>
+
+                            </div>
+                            <!--  </form> -->
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+
+        </section>
+
+
+
+
+        <div th:replace="layout/cabecera::scripts"></div>
+
+
+        <script th:src="@{../assets/dist/js/bootstrap.bundle.min.js}"></script>
+
+        <!--  <script th:src="@{cheatsheet.js}"></script>-->
+    </body>
+
+</html>
